@@ -2,8 +2,11 @@ package pe.edu.ulima.adapters;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -25,5 +28,13 @@ public class MainActivity extends AppCompatActivity {
         CursosaAdapter cursosadapter=new CursosaAdapter(cursos,this);
 
         spiCursos.setAdapter(cursosadapter);
+
+        spiCursos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Curso curso= (Curso)adapterView.getItemAtPosition(i);
+                Toast.makeText(MainActivity.this,"Curso: " + curso.getNombre(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
